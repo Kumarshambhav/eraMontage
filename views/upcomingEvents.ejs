@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events - First Year Students</title>
+    <link rel="website icons" href="/public/images/WhatsApp Image 2024-08-29 at 01.47.24_e16105a3.jpg">
+    
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/stylesheet/upcomingEvents.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar animate-slide-down">
+        <div class="nav-container">
+            <div class="logo">Era Montage</div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="/feed">Home</a></li>
+                <li><a href="/eventSubmission">EventSubmission</a></li>
+                <li><a href="/UpcomingEvents">UpcomingEvents</a></li>
+                <li><a href="/postFeed">PostFeed</a></li>
+               
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Upcoming Events Container -->
+    <div class="container">
+        <div class="events-container">
+            <h1 class="title animate-fade-in">Upcoming Events for First Year Students</h1>
+            <p class="intro-text animate-fade-in">Explore the exciting events specially curated for you. Get involved, make new friends, and enjoy your first year to the fullest!</p>
+
+            <div class="events-grid animate-slide-up">
+                <!-- Example of an event card -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="/path/to/orientation.jpg" alt="Orientation Event">
+                    </div>
+                    <div class="event-details">
+                        <h2 class="event-title">Orientation Day</h2>
+                        <p class="event-date"><i class="fa-solid fa-calendar-alt"></i> September 5, 2024</p>
+                        <p class="event-description">Kickstart your first year with a day full of fun activities, introductions, and campus tours. Don't miss out on meeting your classmates and faculty!</p>
+                        <button class="event-btn">Learn More</button>
+                    </div>
+                </div>
+
+                <!-- Another event card -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="/path/to/music-fest.jpg" alt="Music Fest">
+                    </div>
+                    <div class="event-details">
+                        <h2 class="event-title">Freshers' Music Fest</h2>
+                        <p class="event-date"><i class="fa-solid fa-calendar-alt"></i> October 12, 2024</p>
+                        <p class="event-description">Join us for a night of amazing performances, music, and dance. Get ready to show your talent or cheer on your new friends!</p>
+                        <button class="event-btn">Learn More</button>
+                    </div>
+                </div>
+
+                <!-- Add more event cards as needed -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            var navLinks = document.querySelector('.nav-links');
+            
+            // Toggle the active class
+            navLinks.classList.toggle('active');
+            
+            // Adjust max-height based on whether the menu is open or closed
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.maxHeight = navLinks.scrollHeight + "px"; // Set max-height to actual height
+            } else {
+                navLinks.style.maxHeight = null; // Reset max-height to enable smooth closing
+            }
+        });
+    </script>
+</body>
+</html>

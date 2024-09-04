@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    <link rel="icon" type="image/x-icon" href="/public/images/WhatsApp Image 2024-08-29 at 01.47.24_e16105a3.jpg">
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/stylesheet/feed.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar animate-slide-down">
+        <div class="nav-container">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <div class="logo">Era Montage</div>
+            <ul class="nav-links">
+                <li><a href="/feed">Home</a></li>
+                <li><a href="/eventSubmission">EventSubmission</a></li>
+                <li><a href="/UpcomingEvents">UpcomingEvents</a></li>
+                <li><a href="/postFeed">PostFeed</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/notifications">Notifications</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Feed Container -->
+    <div class="container">
+        <div class="feed-container">
+            <!-- Create Post Section -->
+            <div class="create-post animate-slide-up">
+                <h2>Create a New Post</h2>
+                <form id="createPostForm" action="/CreateNewPost" method="post" enctype="multipart/form-data">
+                    <textarea name="title" placeholder="Title" rows="4" required></textarea>
+                    <textarea name="postContent" placeholder="What's on your mind?" rows="4" required></textarea>
+                    <input type="file" name="postImage" accept="image/*">
+                    <button type="submit" class="btn">Post</button>
+                </form>
+            </div>
+            
+            <!-- Feed Section -->
+            <h1 class="title animate-fade-in">Feed</h1>
+            <div class="feed animate-slide-up">
+                <!-- Example of a post -->
+                <div class="post">
+                    <h2 class="post-title">Post Title</h2>
+                    <p class="post-content">This is an example of feed post content. It could be text, an image, or a video.</p>
+                    <!-- Post interactions -->
+                    <div class="post-actions">
+                        <button class="action-btn like-btn"><i class="fa-solid fa-thumbs-up"></i> Like</button>
+                        <button class="action-btn dislike-btn"><i class="fa-solid fa-thumbs-down"></i> Dislike</button>
+                        <button class="action-btn comment-btn"><i class="fa-solid fa-comment"></i> Comment</button>
+                    </div>
+                </div>
+                <!-- Additional posts... -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            var navLinks = document.querySelector('.nav-links');
+            
+            // Toggle the active class
+            navLinks.classList.toggle('active');
+            
+            // Adjust max-height based on whether the menu is open or closed
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.maxHeight = navLinks.scrollHeight + "px"; // Set max-height to actual height
+            } else {
+                navLinks.style.maxHeight = null; // Reset max-height to enable smooth closing
+            }
+        });
+    </script>
+</body>
+</html>

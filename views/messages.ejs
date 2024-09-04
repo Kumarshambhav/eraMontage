@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="website icons" href="/public/images/WhatsApp Image 2024-08-29 at 01.47.24_e16105a3.jpg">
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/stylesheet/messages.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar animate-slide-down">
+        <div class="nav-container">
+            <div class="logo">Era Montage</div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="/feed">Home</a></li>
+                <li><a href="/eventSubmission">EventSubmission</a></li>
+                <li><a href="/UpcomingEvents">UpcomingEvents</a></li>
+                <li><a href="/postFeed">PostFeed</a></li>
+               
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/notifications">Notifications</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Messages Container -->
+    <div class="container">
+        <div class="messages-header">
+            <h1 class="section-title animate-fade-in">Messages</h1>
+        </div>
+
+        <!-- Chat List Section -->
+        <div class="chat-list-container">
+            <div class="chat-list animate-slide-up">
+                <!-- Example of a chat preview -->
+                <div class="chat-preview">
+                    <img src="/path/to/user1.jpg" alt="User 1" class="chat-avatar">
+                    <div class="chat-info">
+                        <h2 class="chat-name">Jane Smith</h2>
+                        <p class="chat-last-message">Hey, are we still meeting later?</p>
+                    </div>
+                </div>
+
+                <div class="chat-preview">
+                    <img src="/path/to/user2.jpg" alt="User 2" class="chat-avatar">
+                    <div class="chat-info">
+                        <h2 class="chat-name">John Doe</h2>
+                        <p class="chat-last-message">Sure, I can help with that!</p>
+                    </div>
+                </div>
+                <!-- Add more chat previews as needed -->
+            </div>
+        </div>
+
+        <!-- Chat Window Section -->
+        <div class="chat-window-container">
+            <div class="chat-window animate-slide-up">
+                <div class="chat-header">
+                    <h2 class="chat-partner-name">Jane Smith</h2>
+                </div>
+                <div class="chat-messages">
+                    <!-- Example of a message -->
+                    <div class="message received">
+                        <p class="message-text">Hey, how's it going?</p>
+                        <span class="message-time">10:15 AM</span>
+                    </div>
+                    <div class="message sent">
+                        <p class="message-text">I'm doing great, thanks! How about you?</p>
+                        <span class="message-time">10:17 AM</span>
+                    </div>
+                    <!-- Add more messages as needed -->
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" placeholder="Type a message..." class="chat-input">
+                    <button class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            var navLinks = document.querySelector('.nav-links');
+            
+            // Toggle the active class
+            navLinks.classList.toggle('active');
+            
+            // Adjust max-height based on whether the menu is open or closed
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.maxHeight = navLinks.scrollHeight + "px"; // Set max-height to actual height
+            } else {
+                navLinks.style.maxHeight = null; // Reset max-height to enable smooth closing
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="website icons" href="/public/images/WhatsApp Image 2024-08-29 at 01.47.24_e16105a3.jpg">
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/stylesheet/notifications.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar animate-slide-down">
+        <div class="nav-container">
+            <div class="logo">Era Montage</div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="/feed">Home</a></li>
+                <li><a href="/eventSubmission">EventSubmission</a></li>
+                <li><a href="/UpcomingEvents">UpcomingEvents</a></li>
+                <li><a href="/postFeed">PostFeed</a></li>
+               
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/notifications">Notifications</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Notifications Container -->
+    <div class="container">
+        <div class="notifications-header">
+            <h1 class="section-title animate-fade-in">Notifications</h1>
+        </div>
+
+        <div class="notifications-list animate-slide-up">
+            <!-- Example of a notification item -->
+            <div class="notification-item unread">
+                <div class="notification-icon">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-message">You have a new message from Jane Smith</p>
+                    <span class="notification-time">5 minutes ago</span>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-message">John Doe liked your post</p>
+                    <span class="notification-time">2 hours ago</span>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-message">Emily Clark sent you a friend request</p>
+                    <span class="notification-time">1 day ago</span>
+                </div>
+            </div>
+            <!-- Add more notification items as needed -->
+        </div>
+    </div>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            var navLinks = document.querySelector('.nav-links');
+            
+            // Toggle the active class
+            navLinks.classList.toggle('active');
+            
+            // Adjust max-height based on whether the menu is open or closed
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.maxHeight = navLinks.scrollHeight + "px"; // Set max-height to actual height
+            } else {
+                navLinks.style.maxHeight = null; // Reset max-height to enable smooth closing
+            }
+        });
+    </script>
+</body>
+</html>

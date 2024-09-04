@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="website icons" href="/public/images/WhatsApp Image 2024-08-29 at 01.47.24_e16105a3.jpg">
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/stylesheet/settings.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar animate-slide-down">
+        <div class="nav-container">
+            <div class="logo">Era Montage</div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="/feed">Home</a></li>
+                <li><a href="/eventSubmission">EventSubmission</a></li>
+                <li><a href="/UpcomingEvents">UpcomingEvents</a></li>
+                <li><a href="/postFeed">PostFeed</a></li>
+              
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/notifications">Notifications</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Settings Container -->
+    <div class="container">
+        <h1 class="section-title animate-fade-in">Settings</h1>
+
+        <!-- Settings Form -->
+        <div class="settings-form animate-slide-up">
+            <!-- Account Settings -->
+            <div class="settings-section">
+                <h2 class="settings-heading">Account Settings</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Privacy Settings -->
+            <div class="settings-section">
+                <h2 class="settings-heading">Privacy Settings</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="profile-visibility">Profile Visibility</label>
+                        <select id="profile-visibility" name="profile-visibility">
+                            <option value="public">Public</option>
+                            <option value="friends">Friends</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notifications">Email Notifications</label>
+                        <input type="checkbox" id="notifications" name="notifications">
+                        <label for="notifications">Receive notifications via email</label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Account Management -->
+            <div class="settings-section">
+                <h2 class="settings-heading">Account Management</h2>
+                <form>
+                    <div class="form-group">
+                        <button type="submit" class="action-btn save-btn">Save Changes</button>
+                        <button type="button" class="action-btn delete-btn">Delete Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            var navLinks = document.querySelector('.nav-links');
+            
+            // Toggle the active class
+            navLinks.classList.toggle('active');
+            
+            // Adjust max-height based on whether the menu is open or closed
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.maxHeight = navLinks.scrollHeight + "px"; // Set max-height to actual height
+            } else {
+                navLinks.style.maxHeight = null; // Reset max-height to enable smooth closing
+            }
+        });
+    </script>
+</body>
+</html>

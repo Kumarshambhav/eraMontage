@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    <link rel="icon" type="image/x-icon" href="/public/images/WhatsApp Image 2024-08-29 at 01.47.24_e16105a3.jpg">
+    <link rel="stylesheet" href="/stylesheet/feed.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar animate-slide-down">
+        <div class="nav-container">
+            <div class="logo">Era Montage</div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="/feed">Home</a></li>
+                <li><a href="/eventSubmission">Event Submission</a></li>
+                <li><a href="/UpcomingEvents">Upcoming Events</a></li>
+                <li><a href="/postFeed">Post Feed</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/notifications">Notifications</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Feed Container -->
+    <div class="container">
+        <div class="feed-container">
+            <h1 class="title animate-fade-in">Era Montage Posts</h1>
+            <a href="/CreatePost" class="create-post-btn">Create Post</a>
+            
+            <div class="feed animate-slide-up">
+                <!-- Example of a post -->
+                <% posts.forEach(function(post){ %>
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="profile-image">
+                                <img src="/images/profileImage/<%= post.user.profileImage %>" alt="Profile Image">
+                            </div>
+                            <div class="username-info">
+                                <p class="username"><%= post.user.username %></p>
+                                <p class="handle">@<%= post.user.username %></p>
+                            </div>
+                        </div>
+                        <img src="/images/uploads/<%= post.postImage %>" alt="" class="post-img">  
+                        <p class="post-date"><%= new Date(post.date).toLocaleString('en-US', { weekday: 'long', hour: '2-digit', minute: '2-digit' }) %></p>
+                        <h2 class="post-title"><%= post.title %></h2>
+                        <p class="post-content"><%= post.content %></p>
+                        <!-- Post interactions -->
+                        <div class="post-actions">
+                            <button class="action-btn like-btn"><i class="fa-solid fa-thumbs-up"></i> Like</button>
+                            <button class="action-btn dislike-btn"><i class="fa-solid fa-thumbs-down"></i> Dislike</button>
+                            <button class="action-btn comment-btn"><i class="fa-solid fa-comment"></i> Comment</button>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            var navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.maxHeight = navLinks.scrollHeight + "px";
+            } else {
+                navLinks.style.maxHeight = null;
+            }
+        });
+    </script>
+    
+</body>
+</html>

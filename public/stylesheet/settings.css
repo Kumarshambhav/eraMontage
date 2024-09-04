@@ -1,0 +1,337 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+.navbar {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.settings-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+}
+
+.settings-heading {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Navigation Bar */
+.navbar {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    margin-right: 10px;
+}
+
+.action-btn:hover {
+    color: #333;
+}
+
+.save-btn {
+    color: #28a745;
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+/* Animation Styles */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 2s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-up {
+    animation: slideUp 1s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-down {
+    animation: slideDown 1s ease;
+}
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+/* Basic Style for Nav Links */
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative; /* Relative positioning for pseudo-element manipulation */
+    display: inline-block;
+    padding: 10px 15px;
+    overflow: hidden; /* Ensure contents remain within bounds */
+    transition: color 0.4s ease; /* Smooth transition for text color */
+    z-index: 1; /* Keep text above background effects */
+}
+
+/* Hover Effect Setup */
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    left: 50%;
+    bottom: 0;
+    background: linear-gradient(120deg, #f39c12, #e74c3c); /* Gradient background */
+    z-index: -1; /* Position background behind text */
+    transition: all 0.6s ease; /* Smooth transition for expansion */
+    transform: translateX(-50%); /* Centering the gradient */
+}
+
+.nav-links a:hover::before {
+    width: 110%; /* Expand width beyond element boundaries */
+}
+
+/* Text Hover Animation */
+.nav-links a:hover {
+    color: #fff; /* Keeping text color on hover */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Glowing text effect */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Smooth text transition */
+}
+
+/* Adding Skewed Underline */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    transform: skewX(-45deg) scaleX(0); /* Skewed and scaled down to 0 */
+    transition: transform 0.5s ease; /* Smooth transformation for skew effect */
+}
+
+.nav-links a:hover::after {
+    transform: skewX(-45deg) scaleX(1); /* Scale up to full width on hover */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction:row;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        display: none; /* Hidden by default for mobile view */
+        width: 100%;
+        background-color: #333;
+        overflow: hidden;
+        max-height: 0; /* Start with max-height at 0 */
+        transition: max-height 0.5s ease-out; /* Add transition for smooth open and close */
+    }
+
+    .nav-links.active {
+        display: flex; /* Display flex when active */
+        max-height: 300px; /* Adjust the max-height according to the number of items */
+        transition: max-height 0.5s ease-in; /* Smooth animation for expanding */
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: left;
+        padding: 10px 20px;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+    }
+
+    .nav-links a:hover {
+        background-color: #333;
+    }
+
+    .navbar .hamburger {
+        display: block; /* Show the hamburger icon */
+        cursor: pointer;
+        font-size: 24px;
+        padding: 10px;
+    }
+}
+
+/* Hamburger Menu Button (Hidden by default) */
+.hamburger {
+    display: none; /* Hidden by default */
+    color: #fff;
+}
+
+/* Styles for the Hamburger Icon */
+.hamburger i {
+    color: #fff;
+    font-size: 24px;
+}

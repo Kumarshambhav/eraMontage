@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="website icons" href="/public/images/WhatsApp Image 2024-08-29 at 01.47.24_e16105a3.jpg">
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/stylesheet/CreateAccount.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1 style="color: seagreen; font-size: 25px;" class="title animate-fade-in">Welcome to Era Montage</h1>
+            <h1 style="font-size: 20px;" class="title animate-fade-in">Create Account</h1>
+            <form action="/register" method="POST" class="animate-slide-up">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <h1 style="color: black;font-size: 14px;">If u have already account <a style="color: blue; text-decoration: none;" href="/login">Login</a></h1>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
