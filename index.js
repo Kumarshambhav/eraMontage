@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const app = express();
 const multer = require('multer');
 const crypto = require('crypto');
+const port = process.env.PORT || 3000;
 
 app.set("view engine","ejs");
 app.use(express.json());
@@ -168,4 +169,4 @@ function isLoggedIn(req,res,next){
     next();
 }
 
-app.listen(3000);
+app.listen(port);
