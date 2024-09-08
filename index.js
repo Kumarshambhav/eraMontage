@@ -10,6 +10,9 @@ const bcrypt = require('bcrypt');
 const app = express();
 const multer = require('multer');
 const crypto = require('crypto');
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
 const port = process.env.PORT || 3000;
 
 app.set("view engine","ejs");
