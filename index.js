@@ -13,12 +13,11 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const port = process.env.PORT || 3000;
 
-// Cloudinary Configuration
+
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  cloudinary_url: process.env.CLOUDINARY_URL
 });
+
 
 // Set up view engine
 app.set("view engine", "ejs");
@@ -113,7 +112,7 @@ app.post("/CreateNewPost", isLoggedIn, uploadPostImage.single('postImage'), asyn
     title: req.body.title,
     content: req.body.postContent,
     user: user._id,
-    postImage: req.file.path  // Cloudinary URL
+    postImage: cloudinary_url // Cloudinary URL
   });
   user.posts.push(post._id);
   await post.save();
