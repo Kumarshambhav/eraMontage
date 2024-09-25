@@ -10,7 +10,9 @@ const bcrypt = require('bcrypt');
 const app = express();
 const multer = require('multer');
 const crypto = require('crypto');
+const { fstat } = require("fs");
 const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -125,6 +127,7 @@ app.post("/CreateNewPost", isLoggedIn, upload.single('postImage'), async functio
   post.postImage = result.secure_url;
   user.posts.push(post._id);
   await post.save();
+  fs.unlinkSync(req.file.path);
   res.redirect("/feed");
 });
 
