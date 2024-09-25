@@ -9,10 +9,8 @@ const profileModel = require("./modules/profile");
 const bcrypt = require('bcrypt');
 const app = express();
 const multer = require('multer');
+const crypto = require('crypto');
 const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const port = process.env.PORT || 3000;
-
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -20,6 +18,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
   });
 
+const port = process.env.PORT || 3000;
 
 // Set up view engine
 app.set("view engine", "ejs");
@@ -28,27 +27,34 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
-// Cloudinary storage for posts
-const postStorage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'posts',
-    allowedFormats: ['jpeg', 'png', 'jpg']
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images/uploads');
+  },
+  filename: function (req, file, cb) {
+    crypto.randomBytes(12,function(err,name){
+      const fn = name.toString("hex")+path.extname(file.originalname);
+      cb(null, fn);
+    })
+   
   }
-});
+})
 
-// Cloudinary storage for profile images
-const profileStorage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'profiles',
-    allowedFormats: ['jpeg', 'png', 'jpg']
+const upload = multer({ storage: storage });
+const profile = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images/profileImage');
+  },
+  filename: function (req, file, cb) {
+    crypto.randomBytes(12,function(err,name){
+      const fn = name.toString("hex")+path.extname(file.originalname);
+      cb(null, fn);
+    })
+   
   }
-});
+})
 
-// Multer configuration
-const uploadPostImage = multer({ storage: postStorage });
-const uploadProfileImage = multer({ storage: profileStorage });
+const profileUpdate = multer({ storage: profile });
 
 // Routes
 app.get("/", function (req, res) {
@@ -108,23 +114,24 @@ app.get("/CreatePost", isLoggedIn, function (req, res) {
 });
 
 // Create a new post and upload image to Cloudinary
-app.post("/CreateNewPost", isLoggedIn, uploadPostImage.single('postImage'), async function (req, res) {
-  const user = await userModel.findOne({ email: req.user.email });
+app.post("/CreateNewPost", isLoggedIn, upload.single('postImage'), async function (req, res) {
+  const user = await userModel.findOne({email:req.user.email});
   const post = await postModel({
-    title: req.body.title,
-    content: req.body.postContent,
-    user: user._id,
-    postImage: req.file.filename // Cloudinary URL
-  });
+      title:req.body.title,
+      content:req.body.postContent,
+      user:user._id,
+  })
+  const result = await cloudinary.uploader.upload(req.file.path);
+  post.postImage = result.secure_url;
   user.posts.push(post._id);
   await post.save();
   res.redirect("/feed");
 });
 
-// Update profile with a new profile image uploaded to Cloudinary
-app.post("/updateProfile", isLoggedIn, uploadProfileImage.single('profileImage'), async function (req, res) {
+app.post("/updateProfile", isLoggedIn, profileUpdate.single('profileImage'), async function (req, res) {
   const user = await userModel.findOne({ email: req.user.email });
-  user.profileImage = req.file.path;  // Cloudinary URL
+  const result = await cloudinary.uploader.upload(req.file.path);
+  user.profileImage = result.secure_url; 
   const profile = await profileModel({
     bio: req.body.bio
   });

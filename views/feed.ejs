@@ -40,14 +40,14 @@
                     <div class="post">
                         <div class="post-header">
                             <div class="profile-image">
-                                <img src="/images/profileImage/<%= post.user.profileImage %>" alt="Profile Image">
+                                <img src="<%= post.user.profileImage%>" alt="Profile Image">
                             </div>
                             <div class="username-info">
                                 <p class="username"><%= post.user.username %></p>
                                 <p class="handle">@<%= post.user.username %></p>
                             </div>
                         </div>
-                        <img src="/images/uploads/<%= post.postImage %>" alt="" class="post-img">  
+                        <img src="<%= post.postImage %>" alt="" class="post-img">  
                         <p class="post-date"><%= new Date(post.date).toLocaleString('en-US', { weekday: 'long', hour: '2-digit', minute: '2-digit' }) %></p>
                         <h2 class="post-title"><%= post.title %></h2>
                         <p class="post-content"><%= post.content %></p>
