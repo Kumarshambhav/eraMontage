@@ -15,8 +15,10 @@ const port = process.env.PORT || 3000;
 
 
 cloudinary.config({
-  cloudinary_url: process.env.CLOUDINARY_URL
-});
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  });
 
 
 // Set up view engine
@@ -112,7 +114,7 @@ app.post("/CreateNewPost", isLoggedIn, uploadPostImage.single('postImage'), asyn
     title: req.body.title,
     content: req.body.postContent,
     user: user._id,
-    postImage: cloudinary_url // Cloudinary URL
+    postImage: req.file.filename // Cloudinary URL
   });
   user.posts.push(post._id);
   await post.save();

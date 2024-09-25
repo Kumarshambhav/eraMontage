@@ -160,6 +160,7 @@ body {
 
 /* Post Content */
 .post-content {
+    word-break:break-word;
     font-size: 14px;
     color: #a8a8a8;
 }
