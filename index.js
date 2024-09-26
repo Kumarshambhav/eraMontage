@@ -127,7 +127,7 @@ app.post("/CreateNewPost", isLoggedIn, upload.single('postImage'), async functio
   post.postImage = result.secure_url;
   user.posts.push(post._id);
   await post.save();
-  
+  fs.unlinkSync(req.file.path);
   res.redirect("/feed");
 });
 
@@ -170,7 +170,7 @@ app.post("/login", async function (req, res) {
   bcrypt.compare(password, user.password, function (err, result) {
     if (result) {
       let token = jwt.sign({ email: email, userId: user._id }, "toptop");
-      res.cookie("token", token);
+      const{secure} = req.cookie('token',token,{httpOnly:true,sameSite:secure?'None':'lax',})
       res.redirect("/feed");
     } else res.redirect("/");
   });
