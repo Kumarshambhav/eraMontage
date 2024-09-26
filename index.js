@@ -127,7 +127,7 @@ app.post("/CreateNewPost", isLoggedIn, upload.single('postImage'), async functio
   post.postImage = result.secure_url;
   user.posts.push(post._id);
   await post.save();
-  fs.unlinkSync(req.file.path);
+  
   res.redirect("/feed");
 });
 
