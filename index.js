@@ -165,15 +165,36 @@ app.post("/register", async function (req, res) {
 // Login existing user
 app.post("/login", async function (req, res) {
   const { email, password } = req.body;
-  const user = await userModel.findOne({ email });
-  if (!user) return res.status(400).send({ message: "Email not found" });
-  bcrypt.compare(password, user.password, function (err, result) {
-    if (result) {
-      let token = jwt.sign({ email: email, userId: user._id }, "toptop");
-      const{secure} = req.cookie('token',token,{httpOnly:true,sameSite:secure?'None':'lax',})
-      res.redirect("/feed");
-    } else res.redirect("/");
-  });
+  
+  try {
+    const user = await userModel.findOne({ email });
+    if (!user) return res.status(400).send({ message: "Email not found" });
+
+    bcrypt.compare(password, user.password, function (err, result) {
+      if (err) return res.status(500).send({ message: "Error comparing passwords" });
+      
+      if (result) {
+        // Generate the JWT token
+        let token = jwt.sign({ email: email, userId: user._id }, "toptop");
+
+        // Check if the connection is secure (HTTPS)
+        const secure = req.secure || req.headers['x-forwarded-proto'] === 'https';
+
+        // Set the cookie with the token and proper options
+        res.cookie('token', token, {
+          httpOnly: true,
+          secure: secure, // Ensure secure cookie for HTTPS
+          sameSite: secure ? 'None' : 'Lax',
+        });
+
+        res.redirect("/feed");
+      } else {
+        res.status(400).send({ message: "Incorrect password" });
+      }
+    });
+  } catch (err) {
+    res.status(500).send({ message: "Server error" });
+  }
 });
 
 // Logout user
