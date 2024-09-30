@@ -146,21 +146,50 @@ app.post("/updateProfile", isLoggedIn, profileUpdate.single('profileImage'), asy
 // Register new user
 app.post("/register", async function (req, res) {
   const { username, password, email } = req.body;
-  const user = await userModel.findOne({ email });
-  if (user) return res.status(400).send({ message: "Email already exists" });
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(password, salt, async (err, hash) => {
-      let user = await userModel.create({
-        username,
-        email,
-        password: hash,
+
+  try {
+    // Check if email already exists
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).send({ message: "Email already exists" });
+    }
+
+    // Generate salt and hash the password
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) return res.status(500).send({ message: "Error generating salt" });
+
+      bcrypt.hash(password, salt, async (err, hash) => {
+        if (err) return res.status(500).send({ message: "Error hashing password" });
+
+        // Create the new user
+        const newUser = await userModel.create({
+          username,
+          email,
+          password: hash,
+        });
+
+        // Generate JWT token
+        const token = jwt.sign({ email: email, userId: newUser._id }, "toptop");
+
+        // Set the token in a cookie with proper options
+        const secure = req.secure || req.headers['x-forwarded-proto'] === 'https';
+
+        res.cookie('token', token, {
+          httpOnly: true,
+          secure: secure, // Ensure the cookie is only sent over HTTPS
+          sameSite: secure ? 'None' : 'Lax',
+        });
+
+        // Redirect to the feed page after successful registration
+        res.redirect("/feed");
       });
-      let token = jwt.sign({ email: email, userId: user._id }, "toptop");
-      res.cookie('token', token);
-      res.redirect("/feed");
     });
-  });
+  } catch (err) {
+    // Handle any unexpected errors
+    res.status(500).send({ message: "Server error" });
+  }
 });
+
 
 // Login existing user
 app.post("/login", async function (req, res) {
